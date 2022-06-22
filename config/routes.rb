@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :geolocations, only: :index
+      resources :geolocations, only: %i[index create]
     end
   end
 end
