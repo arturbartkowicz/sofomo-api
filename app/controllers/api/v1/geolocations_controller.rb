@@ -12,7 +12,7 @@ class Api::V1::GeolocationsController < ApplicationController
 
     transaction.call(geolocation_params[:ip_address]) do |m|
       m.success do |address|
-        @geolocation = Geolocation.new(address)
+        @geolocation = Geolocation.find_or_initialize_by(address)
     
         if @geolocation.save
           render json: @geolocation

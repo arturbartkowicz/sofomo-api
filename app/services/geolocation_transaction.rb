@@ -22,6 +22,7 @@
     end
 
     def fetch_geolocation(ip)
+      # to jest obiekt który ma być stworzony
       result = {
         ip_address: ip,
         location: 'Location'
