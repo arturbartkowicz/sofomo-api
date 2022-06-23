@@ -5,9 +5,10 @@ class Api::V1::GeolocationsController < ApplicationController
   end
 
   def create
-    # Tutaj stwó transakcję która zweryfikuje poprawność ip
-    # Jeśli ip jest poprawny to niech zwóci lokację
-    @geolocation = Geolocation.new(ip_address: geolocation_params[:ip_address], location: "Mielec")
+    # Implementacja Transakcji. Jako argument do niej, przekazywany będzie 'geolocation_params[:ip_address]'
+    # find by or create
+
+    @geolocation = Geolocation.new(ip_address: geolocation_params[:ip_address], location: "Rzeszów")
     if @geolocation.save
       render json: @geolocation
     else
