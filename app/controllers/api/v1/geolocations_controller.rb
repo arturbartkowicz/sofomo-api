@@ -8,11 +8,22 @@ class Api::V1::GeolocationsController < ApplicationController
     # Implementacja Transakcji. Jako argument do niej, przekazywany będzie 'geolocation_params[:ip_address]'
     # find by or create
 
-    @geolocation = Geolocation.new(ip_address: geolocation_params[:ip_address], location: "Rzeszów")
-    if @geolocation.save
-      render json: @geolocation
-    else
-      render error: {error: 'Unable to create geolocation'}, status: 400
+    transaction = GeolocationTransaction.new
+
+    transaction.call(geolocation_params[:ip_address]) do |m|
+      m.success do |address|
+        @geolocation = Geolocation.new(address)
+    
+        if @geolocation.save
+          render json: @geolocation
+        else
+          render json: {error: 'Unable to create geolocation'}, status: 400
+        end
+      end
+
+      m.failure do |error|
+        render json: {error: error}, status: 400
+      end
     end
   end
 end
