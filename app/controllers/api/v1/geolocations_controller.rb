@@ -16,7 +16,7 @@ class Api::V1::GeolocationsController < ApplicationController
         if @geolocation.save
           render json: @geolocation
         else
-          render json: {error: 'Unable to create geolocation'}, status: 400
+          render json: {error: 'Unable to create geolocation'}, status: :bad_request
         end
       end
 
@@ -31,9 +31,9 @@ class Api::V1::GeolocationsController < ApplicationController
   
     if @geolocation
       @geolocation.destroy
-      render json: {message: "Ip address: #{@geolocation.ip_address} was successfully deleted"}, status: 200
+      render json: {message: "Ip address: #{@geolocation.ip_address} was successfully deleted"}, status: :ok
     else
-      render json: {error: "Unable to delet this ip address"}, status: 400
+      render json: {error: "Unable to delete this ip address"}, status: :bad_request
     end
   end
 end
