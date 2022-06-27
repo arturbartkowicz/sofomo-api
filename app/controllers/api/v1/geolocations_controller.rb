@@ -1,14 +1,13 @@
 class Api::V1::GeolocationsController < ApplicationController
+  include HTTParty
+
   def index
       @geolocations = Geolocation.all
       render json: @geolocations
   end
 
   def create
-    # Implementacja Transakcji. Jako argument do niej, przekazywany będzie 'geolocation_params[:ip_address]'
-    # find by or create
-
-    transaction = GeolocationTransaction.new
+    transaction = FetchGeolocationData.new
 
     transaction.call(geolocation_params[:ip_address]) do |m|
       m.success do |address|
