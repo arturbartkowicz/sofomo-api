@@ -25,6 +25,17 @@ class Api::V1::GeolocationsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @geolocation = Geolocation.find(params[:id])
+  
+    if @geolocation
+      @geolocation.destroy
+      render json: {message: "Ip address: #{@geolocation.ip_address} was successfully deleted"}, status: 200
+    else
+      render json: {error: "Unable to delet this ip address"}, status: 400
+    end
+  end
 end
 
 private 
