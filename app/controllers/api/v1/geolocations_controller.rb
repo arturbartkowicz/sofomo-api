@@ -5,13 +5,25 @@ class Api::V1::GeolocationsController < ApplicationController
   end
 
   def create
-    # Tutaj stwó transakcję która zweryfikuje poprawność ip
-    # Jeśli ip jest poprawny to niech zwóci lokację
-    @geolocation = Geolocation.new(ip_address: geolocation_params[:ip_address], location: "Mielec")
-    if @geolocation.save
-      render json: @geolocation
-    else
-      render error: {error: 'Unable to create geolocation'}, status: 400
+    # Implementacja Transakcji. Jako argument do niej, przekazywany będzie 'geolocation_params[:ip_address]'
+    # find by or create
+
+    transaction = GeolocationTransaction.new
+
+    transaction.call(geolocation_params[:ip_address]) do |m|
+      m.success do |address|
+        @geolocation = Geolocation.find_or_initialize_by(address)
+    
+        if @geolocation.save
+          render json: @geolocation
+        else
+          render json: {error: 'Unable to create geolocation'}, status: 400
+        end
+      end
+
+      m.failure do |error|
+        render json: {error: error}, status: 400
+      end
     end
   end
 end
