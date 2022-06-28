@@ -1,24 +1,46 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Rails API + Docker app
 
-Things you may want to cover:
+Simple Rails API application able to store geolocation data in the database, based on IP address.
 
-* Ruby version
+Obtaining geolocation data using https://ipstack.com/
 
-* System dependencies
+An API is able to make a POST request, providing an ip address and return geolocation name based on it. List all created geolocations, and delete them.
 
-* Configuration
+## Tech stack
 
-* Database creation
+- PostgreSQL
+- Ruby on Rails
+- Ruby
+- Docker
 
-* Database initialization
+## Running this app
 
-* How to run the test suite
+You'll need to have Docker installed.
 
-* Services (job queues, cache servers, search engines, etc.)
+Clone this repository on your local machine
 
-* Deployment instructions
+## Using the app
 
-* ...
+Use insomnia etc.
+
+### POST request
+
+### GET request
+
+### DELETE request
+
+<!-- - System dependencies
+
+- Configuration
+
+- Database creation
+
+- Database initialization
+
+- How to run the test suite
+
+- Services (job queues, cache servers, search engines, etc.)
+
+- Deployment instructions -->
