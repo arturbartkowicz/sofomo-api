@@ -21,7 +21,7 @@ class FetchGeolocationData
         response = JSON.parse(@response.body)
         result = {
           ip_address: response['ip'],
-          location: response['city']
+          location: response['city'].nil? ? "We couldn't find location" : response['city']
         }
 
         Success(result)
