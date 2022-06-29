@@ -21,29 +21,23 @@ You'll need to have Docker installed.
 
 Clone this repo anywhere you want and move into the directory:
 
-<code>
+```
+git clone https://github.com/arturbartkowicz/sofomo-api.git
 
-    git clone https://github.com/arturbartkowicz/sofomo-api.git
-
-    cd sofomo-api
-
-</code>
+cd sofomo-api
+```
 
 In the project create a new file in config folder called local_env.yml
 
-<code>
-
-    config/local_env.yml
-
-</code>
+```
+config/local_env.yml
+```
 
 In this file paste a variable:
 
-<code>
-
-    ACCESS_KEY: '<your_access_key>'
-
-</code>
+```
+ACCESS_KEY: '<your_access_key>'
+```
 
 You can grant your access key form:
 https://ipstack.com/product
@@ -51,54 +45,43 @@ and choose an option: GET FREE API KEY
 
 ACCESS_KEY in local_env.yml should look like this:
 
-<code>
-
-    ACCESS_KEY: '600dd8989e5001e435fc5ba32febcb41'
-
-</code>
+```
+ACCESS_KEY: '600dd8989e5001e435fc5ba32febcb41'
+```
 
 In .gitignore file paste this line of code:
 
-<code>
+```
+/config/local_env.yml
+```
 
-    /config/local_env.yml
-
-</code>
 <br>
 
 ### Build the app
 
 Boot the app with docker compose up:
 
-<code>
-
-    docker compose up
-
-</code>
+```
+docker compose up
+```
 
 In another terminal create the database:
 
-<code>
-
-    docker compose run web rake db:create
-
-</code>
+```
+docker compose run web rake db:create
+```
 
 Open docker interactive console:
 
-<code>
-
-    docker exec -it sofomo-api_web_1 /bin/bash
-
-</code>
+```
+docker exec -it sofomo-api_web_1 /bin/bash
+```
 
 Run pending migrations in docer interactive console:
 
-<code>
-
-    bin/rails db:migrate RAILS_ENV=development
-
-</code>
+```
+bin/rails db:migrate RAILS_ENV=development
+```
 
 ## Using the app
 
@@ -113,24 +96,24 @@ http://localhost:3000/api/v1/geolocations
 
 with JSON body where you can pass an ip. An ip below is just an example.
 
-<code>
+```
+{
+  "ip_address": "46.250.21.63"
+}
+```
 
-    {
-      "ip_address": "46.250.21.63"
-    }
-
-</code>
 You should receive a response:
-<code>
-  
-	{
-      "id": 1,
-	  "ip_address": "46.250.21.63",
-	  "location": "Odessa",
-	  "created_at": "2022-06-29T08:37:37.976Z",
-	  "updated_at": "2022-06-29T08:37:37.976Z"
-    }
-</code>
+
+```
+{
+  "id": 1,
+  "ip_address": "46.250.21.63",
+  "location": "Odessa",
+  "created_at": "2022-06-29T08:37:37.976Z",
+  "updated_at": "2022-06-29T08:37:37.976Z"
+}
+```
+
 <br>
 
 ### GET request
