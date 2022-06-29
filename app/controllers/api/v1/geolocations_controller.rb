@@ -27,7 +27,7 @@ class Api::V1::GeolocationsController < ApplicationController
   end
 
   def destroy
-    @geolocation = Geolocation.find(params[:id])
+    @geolocation = Geolocation.find_by(ip_address: geolocation_params[:ip_address])
   
     if @geolocation
       @geolocation.destroy

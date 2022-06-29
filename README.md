@@ -94,7 +94,7 @@ create POST request to the endpoint:
 
 http://localhost:3000/api/v1/geolocations
 
-with JSON body where you can pass an ip. An ip below is just an example.
+As JSON body pass an <code>ip</code>. An ip below is just an example.
 
 ```
 {
@@ -122,16 +122,24 @@ Create GET request to the endpoint:
 
 http://localhost:3000/api/v1/geolocations
 
-Response should receive an array of objects similar like POST request
+Response should receive an array of objects similar like POST request.
 <br><br>
 
 ### DELETE request
 
 Create DELETE request to the endpoint:
 
-http://localhost:3000/api/v1/geolocations/[:id]
+http://localhost:3000/api/v1/geolocations/ip
 
-As a id pass a value of the id object which you would like to delete
-<br><br>
+As JSON body pass an <code>ip</code> which you want to delete.
+Below JSON body example:
+
+```
+{
+	"ip_address": "46.187.21.60"
+}
+```
+
+<br>
 
 ## Running tests
