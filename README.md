@@ -136,10 +136,22 @@ Below JSON body example:
 
 ```
 {
-	"ip_address": "46.187.21.60"
+  "ip_address": "46.187.21.60"
 }
 ```
 
 <br>
 
 ## Running tests
+
+Open a new terminal and in the project folder open docker interactive console:
+
+```
+docker exec -it sofomo-api_web_1 /bin/bash
+```
+
+In the docker interactive console run all the test with the rspec command:
+
+```
+rspec
+```
