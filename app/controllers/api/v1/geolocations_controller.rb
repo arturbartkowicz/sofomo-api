@@ -14,14 +14,14 @@ class Api::V1::GeolocationsController < ApplicationController
         @geolocation = Geolocation.find_or_initialize_by(address)
     
         if @geolocation.save
-          render json: @geolocation
+          render json: @geolocation, status: :created
         else
           render json: {error: 'Unable to create geolocation'}, status: :bad_request
         end
       end
 
       m.failure do |error|
-        render json: {error: error}, status: 400
+        render json: {error: error}, status: :bad_request
       end
     end
   end
